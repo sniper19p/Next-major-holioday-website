@@ -31,6 +31,7 @@ h1 {
   font-size: 16px;
   border: none;
   cursor: pointer;
+  outline: none;
 }
 
 /* Style the dropdown content */
@@ -89,4 +90,14 @@ h1 {
 .countdown-label {
   font-size: 18px;
   color: #666;
+}
+
+/* Show text on dropdown button when clicked */
+.dropbtn:focus span {
+  display: inline-block;
+}
+
+/* Hide text on dropdown button by default */
+.dropbtn span {
+  display: none;
 }

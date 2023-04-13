@@ -1,6 +1,7 @@
 window.onload = function() {
   const countdownItems = ['months', 'days', 'hours', 'minutes', 'seconds'];
   const countdownLabels = ['Months', 'Days', 'Hours', 'Minutes', 'Seconds'];
+  let timer;
 
   function updateCountdown(holidayDate) {
     const holiday = new Date(holidayDate);
@@ -26,11 +27,6 @@ window.onload = function() {
     document.getElementById('seconds').innerHTML = secondsLeft;
   }
 
-  // Update the countdown every second
-  let timer = setInterval(() => {
-    updateCountdown(document.getElementById('holiday-date').value);
-  }, 1000);
-
   // Add event listeners to dropdown links
   const dropdownLinks = document.querySelectorAll('.dropdown-content a');
   dropdownLinks.forEach(link => {
@@ -39,6 +35,11 @@ window.onload = function() {
       const holidayDate = link.getAttribute('data-holiday-date');
       document.getElementById('dropbtn').innerHTML = link.innerHTML;
       document.getElementById('holiday-date').value = holidayDate;
+      clearInterval(timer);
+      updateCountdown(holidayDate);
+      timer = setInterval(() => {
+        updateCountdown(holidayDate);
+      }, 1000);
     });
   });
 };
