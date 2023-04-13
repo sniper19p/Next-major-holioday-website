@@ -27,7 +27,6 @@ window.onload = function() {
     document.getElementById('seconds').innerHTML = secondsLeft;
   }
 
-  // Add event listeners to dropdown links
   const dropdownLinks = document.querySelectorAll('.dropdown-content a');
   dropdownLinks.forEach(link => {
     link.addEventListener('click', event => {
