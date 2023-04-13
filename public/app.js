@@ -2,8 +2,8 @@ window.onload = function() {
   const countdownItems = ['months', 'days', 'hours', 'minutes', 'seconds'];
   const countdownLabels = ['Months', 'Days', 'Hours', 'Minutes', 'Seconds'];
 
-  function updateCountdown() {
-    const holiday = new Date('2023-12-25');
+  function updateCountdown(holidayDate) {
+    const holiday = new Date(holidayDate);
     const now = new Date();
     const timeLeft = holiday.getTime() - now.getTime();
     if (timeLeft <= 0) {
@@ -27,5 +27,18 @@ window.onload = function() {
   }
 
   // Update the countdown every second
-  const timer = setInterval(updateCountdown, 1000);
+  let timer = setInterval(() => {
+    updateCountdown(document.getElementById('holiday-date').value);
+  }, 1000);
+
+  // Add event listeners to dropdown links
+  const dropdownLinks = document.querySelectorAll('.dropdown-content a');
+  dropdownLinks.forEach(link => {
+    link.addEventListener('click', event => {
+      event.preventDefault();
+      const holidayDate = link.getAttribute('data-holiday-date');
+      document.getElementById('dropbtn').innerHTML = link.innerHTML;
+      document.getElementById('holiday-date').value = holidayDate;
+    });
+  });
 };
